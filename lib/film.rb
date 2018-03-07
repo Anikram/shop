@@ -20,10 +20,10 @@ class Film < Good
   end
 
   def load_new_data(lines)
-      @title = lines[0].chomp,
-      @price = lines[1].chomp,
-      @quantity = lines[2].chomp,
-      @year = lines[3].chomp,
-      @director = lines[4].chomp
+      self.title = lines[0].chomp
+      self.price = lines[1].chomp
+      self.quantity = lines[2].chomp
+      self.year = lines[3].chomp
+      self.director = lines[4].chomp
   end
 end
