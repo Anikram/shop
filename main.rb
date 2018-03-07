@@ -2,44 +2,29 @@ require_relative "lib/good"
 require_relative "lib/book"
 require_relative "lib/film"
 
-current_path = File.dirname(__FILE__)
+film_paths = Dir.glob("#{__dir__}/data/films/*")
+book_paths = Dir.glob("#{__dir__}/data/books/*")
 
-films = [
-  Film.new({}),
-  Film.new({})
-]
+films =[]
+books = []
 
-films_path = current_path + "/data/films/"
-
-films.each_with_index do |film, index|
-  film.read_from_file(films_path, index)
+film_paths.each do |path|
+  films << Film.read_from_file(path)
 end
 
-books = [
-  Book.new({
-             :title => "Гарри Поттер и Философский камень",
-             :price => 999,
-             :quantity => 2,
-             :genre => "Фантастика",
-             :author => "Джоан К. Роулинг"
-           }),
-  Book.new({
-             :title => "Гарри Поттер и тайная комната",
-             :price => 1099,
-             :quantity => 1,
-             :genre => "Фантастика",
-             :author => "Джоан К. Роулинг"
-           })
-]
-
-books[0].genre = "Семейный"
+book_paths.each do |path|
+  books << Book.read_from_file(path)
+end
 
 i = 1
+
 puts "Каталог фильмов\r\n\r\n"
+
 films.each do |film|
   puts "#{i}. #{film.show}"
   i += 1
 end
+
 books.each do |book|
 puts "#{i}. #{book.show}"
 i += 1
