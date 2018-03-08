@@ -26,8 +26,6 @@ class Film < Good
     return "Фильм #{@title}, #{@year}, реж. #{@director}, #{@price} руб. (осталось #{@quantity})"
   end
 
-
-
   def manual_loading(lines)
     self.title = lines[0].chomp
     self.price = lines[1].chomp

@@ -1,5 +1,5 @@
 class Good
-  attr_writer :title, :price, :quantity
+  attr_accessor :title, :price, :quantity
 
   def self.read_from_file(file_path)
     return "NotImlementedError"
@@ -18,6 +18,4 @@ class Good
   def show
 
   end
-
-
 end
