@@ -1,5 +1,5 @@
-class Book < Good
-  attr_writer :genre, :author
+class Disk < Good
+  attr_accessor :genre, :year, :author
 
   def self.read_from_file(file_path)
     lines = File.readlines(file_path)
@@ -11,24 +11,27 @@ class Book < Good
     {:title => lines[0].chomp,
      :price => lines[1].to_i,
      :quantity => lines[2].to_i,
-     :genre => lines[3].chomp,
-     :author => lines[4].chomp
+     :year => lines[3].chomp,
+     :author => lines[4].chomp,
+     :genre => lines[4].chomp
     }
   end
 
-  def initialize(book)
+  def initialize(film)
     super
-    @genre = book[:genre] || ""
-    @author = book[:author] || ""
+    @year = film[:year] || ""
+    @author = film[:author] || ""
+    @genre = film[:genre] || ""
   end
 
   def to_s
-    return "Книга #{@title}, #{@genre}, автор - #{@author}#{super}"
+    return "Альбом #{title} - Исполнитель: #{author}, #{year} год#{super}"
   end
 
   def update(hash)
     super
 
+    self.year = hash[:year].chomp
     self.author = hash[:author].chomp
     self.genre = hash[:genre].chomp
   end

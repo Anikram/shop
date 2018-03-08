@@ -9,8 +9,8 @@ class Film < Good
 
   def self.load_new_data(lines)
     {:title => lines[0].chomp,
-     :price => lines[1].chomp,
-     :quantity => lines[2].chomp,
+     :price => lines[1].to_i,
+     :quantity => lines[2].to_i,
      :year => lines[3].chomp,
      :director => lines[4].chomp
     }
@@ -22,15 +22,14 @@ class Film < Good
     @director = film[:director] || ""
   end
 
-  def show
-    return "Фильм #{@title}, #{@year}, реж. #{@director}, #{@price} руб. (осталось #{@quantity})"
+  def to_s
+    return "Фильм #{@title}, #{@year}, реж. #{@director}#{super}"
   end
 
-  def manual_loading(lines)
-    self.title = lines[0].chomp
-    self.price = lines[1].chomp
-    self.quantity = lines[2].chomp
-    self.year = lines[3].chomp
-    self.director = lines[4].chomp
+  def update(hash)
+    super
+
+    self.year = hash[:year].chomp
+    self.director = hash[:director].chomp
   end
 end

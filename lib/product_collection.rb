@@ -1,6 +1,7 @@
 class ProductCollection
   PRODUCT_TYPES ={
     book: {dir: 'books', class: Book},
+    disk: {dir: 'disks', class: Disk},
     film: {dir: 'films', class: Film}
   }
 
@@ -47,5 +48,13 @@ class ProductCollection
     end
 
     @products.reverse! if hash[:order] == :asc
+  end
+
+  def cleaner
+    products.each do |product|
+      if product.quantity == 0
+        puts self.products.product
+      end
+    end
   end
 end
