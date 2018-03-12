@@ -32,7 +32,7 @@ end
 puts "------------"
 
 if sum > 0
-  puts "Вы приобрели:\n"
+  puts "Вы приобрели:\n\n"
 
   sold = collection.checkout_list(sold_products)
 
