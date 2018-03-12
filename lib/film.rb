@@ -1,5 +1,5 @@
 class Film < Good
-  attr_writer :year, :director
+  attr_accessor :year, :director
 
   def self.read_from_file(file_path)
     lines = File.readlines(file_path)
@@ -12,7 +12,7 @@ class Film < Good
      :price => lines[1].to_i,
      :quantity => lines[2].to_i,
      :year => lines[3].chomp,
-     :director => lines[4].chomp
+     :director => lines[4].chomp,
     }
   end
 
@@ -31,5 +31,9 @@ class Film < Good
 
     self.year = hash[:year].chomp
     self.director = hash[:director].chomp
+  end
+
+  def short_info
+    "Фильм \"#{title}\", #{director}"
   end
 end

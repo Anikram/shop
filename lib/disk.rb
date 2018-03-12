@@ -35,4 +35,8 @@ class Disk < Good
     self.author = hash[:author].chomp
     self.genre = hash[:genre].chomp
   end
+
+  def short_info
+    "Диск \"#{title}\", #{author}"
+  end
 end
