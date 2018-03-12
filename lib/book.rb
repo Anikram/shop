@@ -1,5 +1,5 @@
 class Book < Good
-  attr_writer :genre, :author
+  attr_accessor :genre, :author
 
   def self.read_from_file(file_path)
     lines = File.readlines(file_path)
@@ -31,5 +31,9 @@ class Book < Good
 
     self.author = hash[:author].chomp
     self.genre = hash[:genre].chomp
+  end
+
+  def short_info
+    "Книга \"#{title}\", #{author}"
   end
 end

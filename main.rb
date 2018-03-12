@@ -8,10 +8,16 @@ collection = ProductCollection.read_folders("#{__dir__}/data")
 
 collection.sort!(by: :price, order: :asc)
 
-input = -1
 sum = 0
+<<<<<<< HEAD
+=======
+sold_products = []
+>>>>>>> issue
 puts "Добро пожаловать в магазин \"Диски, фильмы, и книги\"\n\n"
+puts "Выберите товар (для выхода введите \"0\"):"
+user_input = -1
 
+<<<<<<< HEAD
 until input == 0
   correct_choices = [0]
   puts "Выберите товар: (для завершения выберите \"0\") \n"
@@ -31,11 +37,39 @@ until input == 0
     collection.to_a[input - 1].sell_an_item
     puts "Вы выбрали на #{sum} рублей"
     collection.to_a.delete_at(input - 1) if collection.to_a[input - 1].quantity == 0
+=======
+until user_input == 0 || !collection.is_empty?
+  puts "\nВыбрано товаров на #{sum} руб.\n"
+  puts collection.display
+  user_input = STDIN.gets.to_i
+
+  reply = collection.choose_product(user_input)
+
+  if reply.is_a?(Hash)
+    sum += reply[:price]
+    sold_products << reply[:title]
+>>>>>>> issue
   else
-    puts 'Вы ввели не корректный номер товара'
+    puts reply
   end
 end
 
+<<<<<<< HEAD
 result = 'Жаль что вы ничего не купили. Приходите в следующий раз!'
 result = "С Вас #{sum} рублей. Спасибо за заказ!" if sum > 0
 puts result
+=======
+puts "------------"
+
+if sum > 0
+  puts "Вы приобрели:\n"
+
+  sold = collection.checkout_list(sold_products)
+
+  sold.each {|product| puts product}
+
+  puts "\nС Вас #{sum} рублей. Спасиоб за заказ!"
+else
+  puts 'Жаль что вы ничего не купили. Приходите в следующий раз!'
+end
+>>>>>>> issue
